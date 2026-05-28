@@ -1,24 +1,9 @@
-output "instance_id" {
-  description = "EC2 instance ID."
-  value       = aws_instance.deployec2.id
+# modules/ec2-datadisk/outputs.tf
+
+output "volume_id" {
+  value = var.create_datadisk ? aws_ebs_volume.datadisk[0].id : null
 }
 
-output "instance_arn" {
-  description = "EC2 instance ARN."
-  value       = aws_instance.deployec2.arn
-}
-
-output "private_ip" {
-  description = "Private IP address of the EC2 instance."
-  value       = aws_instance.deployec2.private_ip
-}
-
-output "public_ip" {
-  description = "Public IP address of the EC2 instance, if assigned."
-  value       = aws_instance.deployec2.public_ip
-}
-
-output "ami_id" {
-  description = "AMI ID used by the instance."
-  value       = aws_instance.deployec2.ami
+output "attachment_id" {
+  value = var.create_datadisk ? aws_volume_attachment.datadisk[0].id : null
 }
